@@ -253,12 +253,17 @@ function ProductList() {
   };
 
   const handleAddToCart = (product) => {
+    console.log("Product received:", product);
     dispatch(addItem(product));
-    setAddedToCart((prevState) => ({
-        ...prevState,
-        [product.name]: true,
-    }));
-    
+    setAddedToCart((prevState) => {
+        console.log("Previous state:", prevState);
+        const newState = {
+            ...prevState,
+            [product.name]: true,
+        };
+        console.log("New state:", newState);
+        return newState;
+    });
   };
 
     return (
@@ -294,7 +299,7 @@ function ProductList() {
                         <div className="product-price">{plant.cost}</div>
                         <div className="product-description">{plant.description}</div>
 
-                        <button className="product-button" onClick={handleAddToCart(plant)}> Add plant to cart
+                        <button className="product-button" onClick={() => handleAddToCart(plant)}> Add plant to cart
                         </button>
 
                     </div>
