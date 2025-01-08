@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
@@ -29,7 +29,7 @@ const CartItem = ({ onContinueShopping }) => {
     if(item.quantity > 1){
         dispatch(updateQuantity(item));
     } else {
-        dispatch(removeItem(item));
+        handleRemove(item);
     }
   };
 
